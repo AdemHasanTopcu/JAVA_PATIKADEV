@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class AHT_TestProject {
+
+    public static void main(String[] args) {
+        String kulAdi, kulSifre;
+        int hak = 3;
+        int para = 1500;
+        int secim;
+        Scanner input = new Scanner(System.in);
+        while (hak > 0) {
+            System.out.print("Kullanıcı Adınız :");
+            kulAdi = input.nextLine();
+            System.out.print("Şifreniz :");
+            kulSifre = input.nextLine();
+            if ((kulAdi.equals("AHT")) && (kulSifre.equals("123"))) {
+                do {
+                    System.out.println("""
+                            1-Para yatırma
+                            2-Para Çekme
+                            3-Bakiye Sorgula
+                            4-Çıkış Yap""");
+                    System.out.print("Lütfen yapmak istediğiniz işlemi seçiniz : ");
+                    secim = input.nextInt();
+                    switch (secim) {
+                        case 1:
+                            System.out.print("Para miktarı : ");
+                            int paraYatirma = input.nextInt();
+                            para += paraYatirma;
+                            break;
+                        case 2:
+                            System.out.print("Para miktarı : ");
+                            int paraCekme = input.nextInt();
+                            if (paraCekme > para) {
+                                System.out.println("Bakiye yetersiz.");
+                            } else {
+                                para -= paraCekme;
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Bakiyeniz : " + para);
+                            break;
+                        case 4:
+                            System.out.println("Tekrar görüşmek üzere.");
+                            break;
+                        default:
+                            System.out.println("Geçersiz işlem seçimi.");
+                            break;
+                    }
+                }
+                while (secim != 4);
+                break;
+            } else {
+                hak--;
+                System.out.println("Kullanıcı adınız veya şifreniz hatalı. Tekrar deneyiniz.");
+            }
+            if (hak == 0) {
+                System.out.println("Hesabınız bloke olmuştur. Lütfen banka ile iletişime geçiniz.");
+            } else {
+                System.out.println("Kalan Hakkınız: " + hak);
+            }
+        }
+    }
+}
